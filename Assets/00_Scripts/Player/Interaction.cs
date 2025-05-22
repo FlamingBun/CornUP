@@ -13,13 +13,13 @@ public class Interaction : MonoBehaviour
 
     public GameObject curInteractGameObject;
     private IInteractable curInteractable;
-
-    public TextMeshProUGUI promptText;
+    private PromptText promptText;
     private Camera camera;
     
     void Start()
     {
         camera = Camera.main;
+        promptText = GameManager.Instance.UIManager.PromptText;
     }
 
     void Update()
@@ -37,23 +37,20 @@ public class Interaction : MonoBehaviour
                 {
                     curInteractGameObject = hit.collider.gameObject;
                     curInteractable = hit.collider.GetComponent<IInteractable>();
-                    SetPromptText();
+                    promptText.SetPromptText(curInteractable.GetInteractPrompt());
                 }
             }
             else
             {
                 curInteractGameObject = null;
                 curInteractable = null;
+                
                 promptText.gameObject.SetActive(false);
             }
         }
     }
 
-    private void SetPromptText()
-    {
-        promptText.gameObject.SetActive(true);
-        promptText.text = curInteractable.GetInteractPrompt();
-    }
+    
 
     public void OnInteractInput(InputAction.CallbackContext context)
     {

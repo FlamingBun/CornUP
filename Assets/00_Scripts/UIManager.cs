@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
     private Stack<UIKey> uiStack;
     private Dictionary<UIKey, BaseUI> uiDictionary;
 
+    private PromptText promptText;
+    public PromptText PromptText { get { return promptText; } set { promptText = value; } }
+    
     private void Awake()
     {
         uiStack = new Stack<UIKey>();
