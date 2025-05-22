@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static GameManager instance;
+    private CharacterManager characterManager;
+    public static GameManager Instance
     {
-        
+        get
+        {
+            if (instance == null)
+            {
+                instance = new GameObject("GameManager").AddComponent<GameManager>();
+                
+                if (instance is GameManager gameManager)
+                {
+                    gameManager.Initialize();
+                }
+            }
+            return instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public CharacterManager CharacterManager { get { return characterManager; } }
+
+
+    private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            Initialize();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Initialize()
+    {
+        DontDestroyOnLoad(gameObject);
         
+        characterManager = GetComponent<CharacterManager>();
     }
 }
