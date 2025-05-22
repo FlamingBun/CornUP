@@ -8,8 +8,13 @@ using UnityEngine.TextCore.Text;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
+    
+    public GameObject player; // TODO: resource로 옮기기
+    
     private CharacterManager characterManager;
     private UIManager uiManager;
+    private Inventory inventory;
+    
     public static GameManager Instance
     {
         get
@@ -19,6 +24,7 @@ public class GameManager : MonoBehaviour
                 instance = new GameObject("GameManager").AddComponent<GameManager>();
                 instance.AddComponent<UIManager>();
                 instance.AddComponent<CharacterManager>();
+                instance.AddComponent<Inventory>();
                 if (instance is GameManager gameManager)
                 {
                     gameManager.Initialize();
@@ -30,7 +36,9 @@ public class GameManager : MonoBehaviour
 
     public CharacterManager CharacterManager { get { return characterManager; } }
     public UIManager UIManager { get { return uiManager; } }
-    public GameObject player;
+    public Inventory Inventory { get { return inventory; } }
+    
+    
 
     private void Awake()
     {
@@ -50,6 +58,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         uiManager = GetComponent<UIManager>();
         characterManager = GetComponent<CharacterManager>();
+        inventory = GetComponent<Inventory>();
         characterManager.Player = Instantiate(player).GetComponent<Player>();
     }
 
