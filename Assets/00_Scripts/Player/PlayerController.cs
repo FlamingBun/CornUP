@@ -21,7 +21,8 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true; // 인벤토리가 켜졌을 때 시선을 고정하고 커서가 나오게 하기 위한 bool 
     
     private Rigidbody _rigidbody;
-
+    private Player player;
+    
     // events
     public event Action IdleAction;
     public event Action JumpAction;
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        player = GetComponent<Player>();
     }
 
     // Start is called before the first frame update
@@ -104,9 +106,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded() && player.stamina.Value>=10)
         {   
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            player.stamina.Subtract(10);
             JumpAction?.Invoke();
         }
     }
@@ -132,22 +135,40 @@ public class PlayerController : MonoBehaviour
         // 0.01 정도 살짝 위로 올린다.
         Ray[] rays = new Ray[4]
         {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.01f), Vector3.down)
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
         };
 
         for (int i = 0; i < rays.Length; i++)
         {
             // groundLayerMask에 걸렸으면 true 반환 -- 땅이라는 의미
-            if(Physics.Raycast(rays[i], 0.1f, groundLayerMask))
+            if(Physics.Raycast(rays[i], 0.3f, groundLayerMask))
             {
                 return true;
             }
         }
 
         return false;
+    }
+    
+    void OnDrawGizmos()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
+            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
+        };
+
+        Gizmos.color = Color.yellow;
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            Gizmos.DrawRay(rays[i].origin, rays[i].direction * 0.1f);
+        }
     }
     
 

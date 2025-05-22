@@ -28,7 +28,7 @@ public class Condition
 
         public void Add(float value)
         {
-                currentValue += Mathf.Min(currentValue + value, maxValue);
+                currentValue = Mathf.Min(currentValue + value, maxValue);
                 OnChangeCondition?.Invoke(currentValue, maxValue);
         }
 
