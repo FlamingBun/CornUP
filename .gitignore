@@ -76,3 +76,4 @@ crashlytics-build.properties
 /[Bb]uilds/*
 /[Aa]ssets/99_Download/*
 /[Aa]ssets/09_Sound/*
+.idea/*

@@ -3,22 +3,13 @@
     "maps": [
         {
             "name": "Player",
-            "id": "3890d1ba-b9ee-4424-bd22-c83921a8c050",
+            "id": "8f13951a-7c3a-40ab-8bcb-734557dc4cd8",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
-                    "id": "5032478e-8dd6-4930-a871-371b0afd1f34",
+                    "id": "636e865b-bbf8-4195-ac03-06f5fc65c83e",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Look",
-                    "type": "Value",
-                    "id": "f47f87db-a203-4b3f-b121-4a43dfa3858d",
-                    "expectedControlType": "Delta",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -26,34 +17,7 @@
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "cc894783-2b37-473e-9ec3-7db6d10f6045",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "8fc6c95c-8e80-4701-9c24-54b0099da58e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interaction",
-                    "type": "Button",
-                    "id": "4ed3e47f-4e69-4f40-b27d-3168145ead27",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "bf61d736-d7d3-4763-9cb6-a23bf537bf97",
+                    "id": "ef0e00be-49ad-4f38-8b16-8c510914245f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -62,7 +26,34 @@
                 {
                     "name": "Walk",
                     "type": "Button",
-                    "id": "fc9b6749-e145-4681-a159-be08ae2dc533",
+                    "id": "fdd3b7fa-7c95-47fb-a21d-57388d42ac9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "bab09797-db27-43af-b3e4-a998b922625f",
+                    "expectedControlType": "Delta",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "bc436c72-528b-4e9c-8058-2a4c1493c345",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interaction",
+                    "type": "Button",
+                    "id": "d21f7191-f03e-485e-ba71-59d962b2c9c1",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -72,7 +63,7 @@
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "860d7841-7a11-4965-bbbf-231c9934ce15",
+                    "id": "1c39afd4-533b-43aa-9e60-3b1c81eba86d",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -83,7 +74,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "b678ba72-523d-44c2-b057-bb93a022f36a",
+                    "id": "7cccbcfb-0e0c-41f4-b8cf-485c37a3e47a",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -94,7 +85,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "17659edb-7441-45a0-8189-ac43f1e41c72",
+                    "id": "efc5a4e7-a0b1-4a7c-8fdd-64a2f74425db",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -105,7 +96,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "14e9dce8-55cc-4b91-9cc2-c7bf7a9f76df",
+                    "id": "7c1771c3-1c23-4bc3-9eea-f2db0f5a5dd5",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -116,7 +107,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "f20ca509-9290-4132-91ef-1032b861b6a3",
+                    "id": "b98a09cb-bbbf-4f8a-a2d6-425997408a02",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -127,51 +118,7 @@
                 },
                 {
                     "name": "",
-                    "id": "ab16684a-8c88-4442-aaeb-41a4d39e7169",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Look",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "89c55e78-79b5-4fff-a77b-12a800002875",
-                    "path": "<Keyboard>/tab",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8668863c-3400-4eca-9c43-8d0755513887",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interaction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "73728b9f-128d-4d52-9e35-0335812eee36",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c339fed7-56e8-40f3-a4dd-6f7d14d2b69f",
+                    "id": "44634bdb-316d-4f8e-b6f6-48365566ecff",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -182,12 +129,45 @@
                 },
                 {
                     "name": "",
-                    "id": "4ee7c3f8-cc3b-46dc-bc96-e90f4c09cc3f",
+                    "id": "d23a42c2-5a3e-48d7-838a-14d68fe564e3",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Walk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "688e990f-b463-421f-ad01-586ac7b21e1b",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "870fcf15-75b9-4a3c-869a-8beec34fb7a6",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "58f7319d-31a3-4eb4-96fd-aa3a9cd896fc",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
