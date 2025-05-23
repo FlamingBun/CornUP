@@ -23,13 +23,16 @@ public class ItemSlot : MonoBehaviour
 
     private void OnEnable()
     {
+        if (inventoryUI == null)
+        {
+            inventoryUI=GameManager.Instance.UIManager.UIDictionary[UIKey.InventoryUI] as InventoryUI;
+        }
+
         outline.enabled = equipped;
     }
 
-    public void Set(Item _item, InventoryUI _inventoryUI, bool _equipped)
+    public void Set(Item _item, bool _equipped)
     {
-        
-        inventoryUI = _inventoryUI;
         item = _item;
         equipped = _equipped;
         
@@ -42,9 +45,12 @@ public class ItemSlot : MonoBehaviour
         {
             outline.enabled = equipped;
         }
-        
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(()=>OnClickButton(item.ItemSO));
+
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(()=>OnClickButton(item.ItemSO));
+        }
         
         this.gameObject.SetActive(true);
     }

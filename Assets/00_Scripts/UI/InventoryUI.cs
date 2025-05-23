@@ -53,11 +53,25 @@ public class InventoryUI : BaseUI
         inventory.SubscribeInventory(UpdateSlot);
         inventory.SubscribeEquipment((x)=>equipedItem =x);
         
-        CheckSlots();
         UpdateSlot();
         ClearSelectedItemWindow();
     }
 
+    private void UpdateSlot()
+    {
+        CheckSlots();
+        
+        for (int i = 0; i < slots.Count; i++)
+        {
+            slots[i].Set(itemList[i], equipedItem!=null&&itemList[i].ItemSO.id== equipedItem.id);
+        }
+
+        if (selectedItem != null)
+        {
+            SetItemInfo();
+        }
+    }
+    
     private void CheckSlots()
     {
         while(slots.Count != itemList.Count)
@@ -72,14 +86,6 @@ public class InventoryUI : BaseUI
                 slots.RemoveAt(slots.Count-1);
                 Destroy(slot);
             }
-        }
-    }
-
-    private void UpdateSlot()
-    {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            slots[i].Set(itemList[i], this, itemList[i].ItemSO.id== equipedItem.id);
         }
     }
     
@@ -109,7 +115,12 @@ public class InventoryUI : BaseUI
         equipButton.onClick.RemoveAllListeners();
         unequipButton.onClick.RemoveAllListeners();
         
-        useButton.onClick.AddListener(() =>inventory.UseItem(selectedItem.id));
+        useButton.onClick.AddListener(() =>
+        {
+            inventory.UseItem(selectedItem.id);
+            selectedItem = null;
+            ClearSelectedItemWindow();
+        });
         equipButton.onClick.AddListener(()=>inventory.EquipItem(selectedItem));
         unequipButton.onClick.AddListener(()=>inventory.UnEquipItem());
     }

@@ -18,7 +18,6 @@ public class ItemSO : ScriptableObject
     public string description;
     public ItemType type;
     public Sprite icon;
-    public GameObject dropPrefab;
 
     [Header("Stacking")]
     public bool canStack;
