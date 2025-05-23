@@ -17,3 +17,10 @@ public enum ConsumableType
     SpeedUp,
     Jump
 }
+
+public enum MoveDirection
+{
+    MoveX,
+    MoveY,
+    MoveZ
+}

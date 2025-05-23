@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody _rigidbody;
     private Player player;
+    private MovingPlatform movingPlatform;
     
     // events
     public event Action IdleAction;
@@ -62,6 +63,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+    }
+
+    void Update()
+    {
     }
 
     void LateUpdate()
@@ -203,9 +208,6 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     
-    
-    
-
     void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
@@ -217,5 +219,23 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         JumpAction?.Invoke();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            movingPlatform = collision.gameObject.GetComponent<MovingPlatform>();
+            return;
+        }
+    }
+    
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            movingPlatform = null;
+            return;
+        }
     }
 }
