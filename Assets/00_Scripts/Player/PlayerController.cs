@@ -127,6 +127,22 @@ public class PlayerController : MonoBehaviour
             WalkAction?.Invoke(false);
         }
     }
+    
+    public void OnInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            GameManager.Instance.UIManager.OpenUI(UIKey.InventoryUI);
+            Debug.Log("inventory");
+            ToggleCursor();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            GameManager.Instance.UIManager.CloseUI();
+            Debug.Log("Close inventory");
+            ToggleCursor();
+        }
+    }
 
     bool IsGrounded()
     {

@@ -69,6 +69,16 @@ public class GameManager : MonoBehaviour
 
     private void GameStart()
     {
+        StartCoroutine(OpenConditionUI());
+    }
+
+    private IEnumerator OpenConditionUI()
+    {
+        while(!UIManager.UIDictionary.ContainsKey(UIKey.ConditionUI))
+        {
+            yield return null;
+        }
+        
         UIManager.OpenUI(UIKey.ConditionUI);
     }
 

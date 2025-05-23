@@ -12,6 +12,10 @@ public class ConditionUI : BaseUI
     
     private void OnDisable()
     {
+        if (GameManager.Instance == null) return;
+        if (GameManager.Instance.CharacterManager == null) return;
+        if (GameManager.Instance.CharacterManager.Player == null) return;
+        
         GameManager.Instance.CharacterManager.Player.health.UnSubscribeCondition(UpdateHealthUI);
         GameManager.Instance.CharacterManager.Player.stamina.UnSubscribeCondition(UpdateStaminaUI);
     }

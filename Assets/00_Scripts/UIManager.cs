@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     private Stack<UIKey> uiStack;
     private Dictionary<UIKey, BaseUI> uiDictionary;
+    public Dictionary<UIKey, BaseUI> UIDictionary { get => uiDictionary; }
 
     private PromptText promptText;
     public PromptText PromptText { get { return promptText; } set { promptText = value; } }

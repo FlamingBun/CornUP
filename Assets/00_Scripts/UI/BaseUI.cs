@@ -4,7 +4,7 @@ public abstract class BaseUI : MonoBehaviour
 {
     protected abstract UIKey uiKey { get; }
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         Initialize();
         SetUIActive(false);
