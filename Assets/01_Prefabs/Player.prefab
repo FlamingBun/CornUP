@@ -2457,6 +2457,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fc9b6749-e145-4681-a159-be08ae2dc533
     m_ActionName: Player/Walk[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9221684981401478964}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnCameraSwap
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 11cd4afb-0424-446a-927c-5ecf48334a5b
+    m_ActionName: Player/CameraMode[/Keyboard/1]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2495,10 +2511,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   cameraContainer: {fileID: 7446387568013297335}
-  minXLook: -65
-  maxXLook: 65
   lookSensitivity: 0.1
   canLook: 1
+  third_minXLook: -65
+  third_maxXLook: 65
+  third_position: {x: 0, y: 2, z: 0}
+  first_minXLook: -30
+  first_maxXLook: 30
+  first_position: {x: 0, y: 1.4, z: 5}
 --- !u!114 &1426257955806704109
 MonoBehaviour:
   m_ObjectHideFlags: 0

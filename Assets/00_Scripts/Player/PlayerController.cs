@@ -13,12 +13,25 @@ public class PlayerController : MonoBehaviour
     
     [Header("Look")] 
     public Transform cameraContainer;
-    public float minXLook;
-    public float maxXLook;
-    private float camCurXRot;
     public float lookSensitivity;
-    private Vector2 mouseDelta;
     public bool canLook = true; // 인벤토리가 켜졌을 때 시선을 고정하고 커서가 나오게 하기 위한 bool 
+    
+    private float minXLook;
+    private float maxXLook;
+    private bool isThirdPersonMode;
+    
+    private float camCurXRot;
+    private Vector2 mouseDelta;
+
+    [Header("Third Person Mode")]
+    public float third_minXLook;
+    public float third_maxXLook;
+    public Vector3 third_position;
+    
+    [Header("First Person Mode")]
+    public float first_minXLook;
+    public float first_maxXLook;
+    public Vector3 first_position;
     
     private Rigidbody _rigidbody;
     private Player player;
@@ -33,6 +46,10 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
+        isThirdPersonMode = false;
+        minXLook = first_minXLook;
+        maxXLook = first_maxXLook;
+        cameraContainer.localPosition = first_position;
     }
 
     // Start is called before the first frame update
@@ -144,11 +161,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnCameraSwap(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (isThirdPersonMode)
+            {
+                minXLook = first_minXLook;
+                maxXLook = first_maxXLook;
+                cameraContainer.localPosition = first_position;
+                isThirdPersonMode = false;
+            }
+            else
+            {
+                minXLook = third_minXLook;
+                maxXLook = third_maxXLook;
+                cameraContainer.localPosition = third_position;
+                isThirdPersonMode = true;
+            }
+        }
+    }
+
     bool IsGrounded()
     {
-        // 4개의 Ray를 만든다.
-        // 플레이어(transform)을 기준으로 앞뒤좌우 0.2씩 떨어뜨려서.
-        // 0.01 정도 살짝 위로 올린다.
         Ray[] rays = new Ray[4]
         {
             new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
@@ -159,7 +194,6 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            // groundLayerMask에 걸렸으면 true 반환 -- 땅이라는 의미
             if(Physics.Raycast(rays[i], 0.3f, groundLayerMask))
             {
                 return true;
@@ -169,23 +203,7 @@ public class PlayerController : MonoBehaviour
         return false;
     }
     
-    void OnDrawGizmos()
-    {
-        Ray[] rays = new Ray[4]
-        {
-            new Ray(transform.position + (transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.forward * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down),
-            new Ray(transform.position + (-transform.right * 0.2f) + (transform.up * 0.1f), Vector3.down)
-        };
-
-        Gizmos.color = Color.yellow;
-
-        for (int i = 0; i < rays.Length; i++)
-        {
-            Gizmos.DrawRay(rays[i].origin, rays[i].direction * 0.1f);
-        }
-    }
+    
     
 
     void ToggleCursor()
