@@ -98,7 +98,7 @@ public class InventoryUI : BaseUI
     
     private void SetItemInfo()
     {
-        selectedItemName.text = selectedItem.name;
+        selectedItemName.text = selectedItem.displayName;
         selectedItemDescription.text = selectedItem.description;
         
         for (int i = 0; i < selectedItem.consumables.Length; i++)

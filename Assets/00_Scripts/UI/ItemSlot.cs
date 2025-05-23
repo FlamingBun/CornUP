@@ -38,7 +38,7 @@ public class ItemSlot : MonoBehaviour
         
         
         icon.sprite = item.ItemSO.icon;
-        itemNameText.text = item.ItemSO.name;
+        itemNameText.text = item.ItemSO.displayName;
         quantityText.text = item.Count > 1 ? item.Count.ToString() : string.Empty;
 
         if (outline != null)

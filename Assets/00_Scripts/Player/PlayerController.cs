@@ -194,4 +194,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
     }
+
+    public void SuperJump(float jumpForce)
+    {
+        _rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        JumpAction?.Invoke();
+    }
 }
