@@ -36,6 +36,23 @@ public class Inventory : MonoBehaviour
 
     public void UseItem(string id)
     {
+        ItemSO usedItem = inventoryDictionary[id].ItemSO;
+        if (usedItem.type == ItemType.Consumable)
+        {
+            for (int i = 0; i < usedItem.consumables.Length; i++)
+            {
+                switch (usedItem.consumables[i].type)
+                {
+                    case ConsumableType.Health:
+                        GameManager.Instance.CharacterManager.Player.health.Add(usedItem.consumables[i].value);
+                        break;
+                    case ConsumableType.Stamina:
+                        GameManager.Instance.CharacterManager.Player.stamina.Add(usedItem.consumables[i].value);
+                        break;
+                }
+            }
+        }
+
         if (inventoryDictionary[id].Use() <= 0)
         {
             Item item = inventoryDictionary[id];
